@@ -87,7 +87,7 @@ dependencies {
     ksp(libs.hilt.compiler.android)
 
     implementation(libs.accompanist.permissions)
-    implementation(libs.leakcanary)
+    debugImplementation(libs.leakcanary)
 }
 
 fun generateVersionName(): String {
