@@ -4,10 +4,10 @@ import com.psycodeinteractive.gorest.feature.users.domain.model.CreateUserDomain
 import com.psycodeinteractive.gorest.feature.users.domain.model.UserDomainModel
 import com.psycodeinteractive.gorest.feature.users.domain.repository.UserRepository
 
-const val testErrorMessage = "Test error message"
+const val testUserRepositoryErrorMessage = "Test error message"
 
 class TestUserRepository : UserRepository {
-    var testUsersResponse: Result<List<UserDomainModel>> = Result.success(emptyList())
+    var testGetUsersResponse: Result<List<UserDomainModel>> = Result.success(emptyList())
     var testAddUserResponse: Result<Unit> = Result.success(Unit)
     var testDeleteUserResponse: Result<Unit> = Result.success(Unit)
 
@@ -16,19 +16,19 @@ class TestUserRepository : UserRepository {
     var deleteUserThrowError: Boolean = false
 
     override suspend fun getUsers() = if (getUsersThrowError) {
-        Result.failure(Exception(testErrorMessage))
+        Result.failure(Exception(testUserRepositoryErrorMessage))
     } else {
-        testUsersResponse
+        testGetUsersResponse
     }
 
     override suspend fun addUser(user: CreateUserDomainModel): Result<Unit> = if (addUserThrowError) {
-        Result.failure(Exception(testErrorMessage))
+        Result.failure(Exception(testUserRepositoryErrorMessage))
     } else {
         testAddUserResponse
     }
 
     override suspend fun deleteUser(id: Long): Result<Unit> = if (deleteUserThrowError) {
-        Result.failure(Exception(testErrorMessage))
+        Result.failure(Exception(testUserRepositoryErrorMessage))
     } else {
         testDeleteUserResponse
     }

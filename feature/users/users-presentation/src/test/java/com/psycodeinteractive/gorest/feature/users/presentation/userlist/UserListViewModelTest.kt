@@ -41,7 +41,7 @@ class UserListViewModelTest {
     fun `when users are fetched successfully, state is updated to Success`() = runTest {
         // Given
         val usersResponse = listOf(domainUser1, domainUser2)
-        userRepository.testUsersResponse = Result.success(usersResponse)
+        userRepository.testGetUsersResponse = Result.success(usersResponse)
 
         val expectedUsers = listOf(presentationUser1, presentationUser2)
 
@@ -55,7 +55,7 @@ class UserListViewModelTest {
     @Test
     fun `when users fetching fails, state is updated to Error`() = runTest {
         // Given
-        userRepository.testUsersResponse = Result.failure(Exception("Fetching error"))
+        userRepository.testGetUsersResponse = Result.failure(Exception("Fetching error"))
 
         // When
         classUnderTest = UserListViewModel(getUsersUseCase, deleteUserUseCase)
@@ -78,7 +78,7 @@ class UserListViewModelTest {
     @Test
     fun `when user long press is triggered, state should update with user for deletion`() = runTest {
         // Given
-        userRepository.testUsersResponse = Result.success(listOf(domainUser1))
+        userRepository.testGetUsersResponse = Result.success(listOf(domainUser1))
 
         // When
         classUnderTest = UserListViewModel(getUsersUseCase, deleteUserUseCase)
@@ -91,13 +91,13 @@ class UserListViewModelTest {
     @Test
     fun `when delete user action is triggered and succeeds, users should be refetched`() = runTest {
         // Given
-        userRepository.testUsersResponse = Result.success(listOf(domainUser1, domainUser2))
+        userRepository.testGetUsersResponse = Result.success(listOf(domainUser1, domainUser2))
         val expectedUsersAfterRefetch = listOf(presentationUser1)
 
         // When
         classUnderTest = UserListViewModel(getUsersUseCase, deleteUserUseCase)
 
-        userRepository.testUsersResponse = Result.success(listOf(domainUser1))
+        userRepository.testGetUsersResponse = Result.success(listOf(domainUser1))
 
         classUnderTest.onUserLongPressAction(presentationUser1)
         classUnderTest.onDeleteUserAction()
@@ -111,7 +111,7 @@ class UserListViewModelTest {
     @Test
     fun `when delete user action fails, state should show error`() = runTest {
         // Given
-        userRepository.testUsersResponse = Result.success(listOf(domainUser1))
+        userRepository.testGetUsersResponse = Result.success(listOf(domainUser1))
         userRepository.testDeleteUserResponse = Result.failure(Exception("Delete error"))
 
         // When
@@ -128,7 +128,7 @@ class UserListViewModelTest {
     @Test
     fun `when dismiss delete dialog is triggered, state should clear user for deletion`() = runTest {
         // Given
-        userRepository.testUsersResponse = Result.success(listOf(domainUser1))
+        userRepository.testGetUsersResponse = Result.success(listOf(domainUser1))
 
         // When
         classUnderTest = UserListViewModel(getUsersUseCase, deleteUserUseCase)
@@ -142,7 +142,7 @@ class UserListViewModelTest {
     @Test
     fun `when navigation to add user is handled, state should reset navigation flag`() = runTest {
         // Given
-        userRepository.testUsersResponse = Result.success(listOf(domainUser1))
+        userRepository.testGetUsersResponse = Result.success(listOf(domainUser1))
 
         // When
         classUnderTest = UserListViewModel(getUsersUseCase, deleteUserUseCase)
