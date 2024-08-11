@@ -1,0 +1,31 @@
+<resources>
+    <string name="go_rest_users">Go Rest Users</string>
+
+    <string name="male">Male</string>
+    <string name="female">Female</string>
+    <string name="active">Active</string>
+    <string name="inactive">Inactive</string>
+
+    <string name="try_again">Try again</string>
+
+    <string name="gender">Gender</string>
+    <string name="status">Status</string>
+    <string name="name">Name</string>
+    <string name="email">Email</string>
+    <string name="cancel">Cancel</string>
+    <string name="add_user">Add user</string>
+    <string name="empty_user_list">User list is empty</string>
+
+    <string name="error_invalid_email">E-mail must follow pattern: email@address.com</string>
+    <string name="error_get_users">User list fetch error</string>
+    <string name="error_add_user">User creation error</string>
+    <string name="error_delete_user">User deletion error</string>
+    <string name="error_name_empty">Name can\'t be empty</string>
+
+    <string name="add_user_success">User added successfully</string>
+
+    <string name="delete_user_title">User deletion</string>
+    <string name="delete_user_confirmation">Are you sure you want to remove this user?</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+</resources>
