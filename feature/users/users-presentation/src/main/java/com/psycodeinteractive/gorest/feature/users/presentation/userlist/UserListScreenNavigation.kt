@@ -1,5 +1,6 @@
 package com.psycodeinteractive.gorest.feature.users.presentation.userlist
 
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -23,5 +24,9 @@ fun NavGraphBuilder.userListScreenRoute(
         }
 
         UserListScreen(onNavigateToAddUser, wasUserAdded)
+
+        LaunchedEffect(wasUserAdded) {
+            wasUserAdded = false
+        }
     }
 }
